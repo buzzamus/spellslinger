@@ -1,0 +1,10 @@
+<h1><%= @deck.name %></h1>
+
+<% @deck.cards.each do |card| %>
+  <h3>Name: </h3>
+  <%= card.name %>
+
+<% end %>
+
+<h3>avg CMC</h3>
+<%= @average_cmc %>

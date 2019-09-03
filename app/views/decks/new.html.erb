@@ -1,0 +1,13 @@
+<h1>Enter New Deck</h1>
+
+<%= form_for(@deck, html: { role: "form" }) do |f| %>
+
+<%= f.label :name %>
+<%= f.text_field :name, placeholder: "Mono Black", autofocus: true %>
+
+<%= f.label :format %>
+<%= f.text_field :format, placeholder: "EDH" %>
+
+<%= f.submit %>
+
+<% end %>

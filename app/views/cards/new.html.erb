@@ -1,0 +1,6 @@
+<h1>Upload File</h1>
+
+<%= form_tag import_cards_path, multipart: true do %>
+  <p><%= file_field_tag :file %></p>
+  <%= submit_tag "Upload File", class: "submit-btn" %>
+<% end %>
