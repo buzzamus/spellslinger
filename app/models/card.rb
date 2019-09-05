@@ -19,7 +19,7 @@ class Card < ApplicationRecord
         red: line['red'].to_i,
         green: line['green'].to_i,
         white: line['white'].to_i,
-        colorless: line['cmc'].to_i - (line['green'].to_i + line['blue'].to_i + line['black'].to_i + line['red'].to_i + line['white'].to_i),
+        colorless: line['colorless'].to_i,
         deck_id: line['deck_id'].to_i
       )
     end

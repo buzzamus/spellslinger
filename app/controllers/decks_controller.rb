@@ -19,6 +19,8 @@ class DecksController < ApplicationController
   end
 
   def show
+    # make this a floating number with decimal
+    # also need to find way to first filter our lands
   end
 
   private
