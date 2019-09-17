@@ -17,5 +17,11 @@ RSpec.describe Card, type: :model do
     it { should allow_value("", nil).for(:purpose) }
     it { should validate_length_of(:purpose).is_at_least(3) }
     it { should validate_length_of(:purpose).is_at_most(40) }
+
+    it 'downcases card type if capitalized' do
+      card.card_type = "Legendary Creature"
+      card.save
+      expect(card.card_type).to eq("legendary creature")
+    end
   end
 end

@@ -4,6 +4,7 @@ class Card < ApplicationRecord
   validates :name, presence: true, length: { in: 2..80 }
   validates :card_type, presence: true, length: { in: 4..40 }
   validates :purpose, length: { in: 3..40 }, allow_blank: true
+  before_save :downcase_fields
 
   belongs_to :deck
 
@@ -23,5 +24,10 @@ class Card < ApplicationRecord
         deck_id: line['deck_id'].to_i
       )
     end
+  end
+
+  def downcase_fields
+    # add fields to change to lower case here
+    self.card_type.downcase!
   end
 end

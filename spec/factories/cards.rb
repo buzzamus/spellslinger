@@ -3,7 +3,7 @@ FactoryBot.define do
     association :deck
     name { "Yehenni, Undying Partisan" }
     card_type { "Legendary Creature" }
-    purpose { "Commander" }
+    purpose { "commander" }
     cmc { 3 }
     blue { 0 }
     red { 0 }
