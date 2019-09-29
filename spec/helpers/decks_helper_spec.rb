@@ -11,6 +11,18 @@ RSpec.describe DecksHelper, type: :helper do
     @deck = deck
   end
 
+  describe '#average_cmc_calculator' do
+    it 'calculates the average cmc of the deck' do
+      card2 = Card.create(name: 'swamp', card_type: 'basic land', purpose: 'mana')
+      card3 = Card.create(name: 'mountain', card_type: 'land', purpose: 'mana')
+      card4 = Card.create(name: 'Bitterblossom', card_type: 'enchantment', purpose: 'creature', colorless: 1, black: 1, cmc: 2)
+      @deck.cards << card2
+      @deck.cards << card3
+      @deck.cards << card4
+      expect(average_cmc_calculator).to eq(2.5)
+    end
+  end
+
   describe "#deck_length" do
     it 'returns the number of cards' do
       expect(deck_length).to eq(1)
@@ -57,8 +69,8 @@ RSpec.describe DecksHelper, type: :helper do
 
   describe '#nonland_permanents' do
     it 'returns the deck minus the land card names' do
-      card2 = Card.create(name: 'swamp', card_type: 'land', purpose: 'mana')
-      card3 = Card.create(name: 'mountain', card_type: 'land', purpose: 'mana')
+      card2 = Card.create(name: 'swamp', card_type: 'basic land', purpose: 'mana')
+      card3 = Card.create(name: 'Cabal Coffer', card_type: 'land', purpose: 'mana')
       card4 = Card.create(name: 'Bitterblossom', card_type: 'enchantment', purpose: 'creature')
       @deck.cards << card2
       @deck.cards << card3
