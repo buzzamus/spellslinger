@@ -3,7 +3,7 @@ module DecksHelper
     average_cmc = 0
     nonland_cards = @deck.cards.select { |card| card.card_type != 'land' }
     nonland_cards.map { |card| average_cmc += card.cmc }
-    average_cmc = (average_cmc / nonland_cards.length).to_f
+    average_cmc = (average_cmc.to_f / nonland_cards.length.to_f)
   end
 
   def deck_length
@@ -29,5 +29,21 @@ module DecksHelper
 
   def card_draw
     @deck.cards.where(purpose: "card draw").length
+  end
+
+  def nonland_permanents
+    @deck.cards.where.not(purpose: 'mana')
+  end
+
+  def land_cards
+    @deck.cards.where(purpose: 'mana')
+  end
+
+  def basic_lands
+    @deck.cards.where(card_type: 'basic land').map(&:name).uniq
+  end
+
+  def non_basic_lands
+    land_cards.where.not(card_type: 'basic land')
   end
 end

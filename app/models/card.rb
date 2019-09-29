@@ -10,7 +10,7 @@ class Card < ApplicationRecord
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |line|
-      @card = Card.where(name: line['name']).first_or_create(
+      @card = Card.create(
         name: line['name'],
         card_type: line['type'],
         purpose: line['purpose'],

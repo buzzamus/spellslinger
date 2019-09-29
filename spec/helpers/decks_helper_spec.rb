@@ -54,4 +54,48 @@ RSpec.describe DecksHelper, type: :helper do
       expect(card_draw).to eq(1)
     end
   end
+
+  describe '#nonland_permanents' do
+    it 'returns the deck minus the land card names' do
+      card2 = Card.create(name: 'swamp', card_type: 'land', purpose: 'mana')
+      card3 = Card.create(name: 'mountain', card_type: 'land', purpose: 'mana')
+      card4 = Card.create(name: 'Bitterblossom', card_type: 'enchantment', purpose: 'creature')
+      @deck.cards << card2
+      @deck.cards << card3
+      @deck.cards << card4
+      expect(@deck.cards.length).to eq(4)
+      expect(nonland_permanents.length).to eq(2)
+    end
+  end
+
+  describe '#land_cards' do
+    it 'returns only land cards' do
+      card2 = Card.create(name: 'swamp', card_type: 'basic land', purpose: 'mana')
+      card3 = Card.create(name: 'mountain', card_type: 'basic land', purpose: 'mana')
+      card4 = Card.create(name: 'Urborg Tomb of Yawgmoth', card_type: 'land', purpose: 'mana')
+      card5 = Card.create(name: 'Cabal Coffers', card_type: 'land', purpose: 'mana')
+      @deck.cards << card2
+      @deck.cards << card3
+      @deck.cards << card4
+      @deck.cards << card5
+      expect(@deck.cards.length).to eq(5)
+      expect(land_cards.length).to eq(4)
+    end
+
+    describe '#basic_lands' do
+      it 'filters out duplicate basic lands in list' do
+        @deck.cards << Card.create(name: 'swamp', card_type: 'basic land', purpose: 'mana')
+        @deck.cards << Card.create(name: 'mountain', card_type: 'basic land', purpose: 'mana')
+        @deck.cards << Card.create(name: 'mountain', card_type: 'basic land', purpose: 'mana')
+        @deck.cards << Card.create(name: 'island', card_type: 'basic land', purpose: 'mana')
+        @deck.cards << Card.create(name: 'swamp', card_type: 'basic land', purpose: 'mana')
+        lands = basic_lands.map { |card| card }
+        expect(lands).to eq(['swamp', 'mountain', 'island'])
+      end
+    end
+
+    it 'keeps a list of total basic lands for each type' do
+      # spec here
+    end
+  end
 end

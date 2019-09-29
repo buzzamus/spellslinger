@@ -1,6 +1,6 @@
 <h1><%= @deck.name %></h1>
 
-<% @deck.cards.each do |card| %>
+<% nonland_permanents.each do |card| %>
   <h3>Name: </h3>
   <%= card.name %>
 
@@ -20,3 +20,15 @@
 <%= mana_ramp %>
 <h3>Card Draw</h3>
 <%= card_draw %>
+
+<h3>Basic Lands</h3>
+
+<% basic_lands.each do |card| %>
+  <p> <%= card %> - <%= land_cards.where(name: card).length %> copies </p>
+<% end %>
+
+<h3>Non-Basic Lands</h3>
+
+<% non_basic_lands.each do |card| %>
+  <p><%= card.name %></p>
+<% end %>
