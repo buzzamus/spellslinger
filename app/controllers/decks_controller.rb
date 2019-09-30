@@ -18,10 +18,7 @@ class DecksController < ApplicationController
     end
   end
 
-  def show
-    # make this a floating number with decimal
-    # also need to find way to first filter our lands
-  end
+  def show; end
 
   private
 
@@ -32,5 +29,4 @@ class DecksController < ApplicationController
   def set_deck
     @deck = Deck.find(params[:id])
   end
-
 end

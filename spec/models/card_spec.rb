@@ -14,14 +14,14 @@ RSpec.describe Card, type: :model do
     it { should validate_presence_of(:card_type) }
     it { should validate_length_of(:card_type).is_at_least(4) }
     it { should validate_length_of(:card_type).is_at_most(40) }
-    it { should allow_value("", nil).for(:purpose) }
+    it { should allow_value('', nil).for(:purpose) }
     it { should validate_length_of(:purpose).is_at_least(3) }
     it { should validate_length_of(:purpose).is_at_most(40) }
 
     it 'downcases card type if capitalized' do
-      card.card_type = "Legendary Creature"
+      card.card_type = 'Legendary Creature'
       card.save
-      expect(card.card_type).to eq("legendary creature")
+      expect(card.card_type).to eq('legendary creature')
     end
   end
 end

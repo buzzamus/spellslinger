@@ -23,7 +23,7 @@ RSpec.describe DecksHelper, type: :helper do
     end
   end
 
-  describe "#deck_length" do
+  describe '#deck_length' do
     it 'returns the number of cards' do
       expect(deck_length).to eq(1)
     end
@@ -33,11 +33,21 @@ RSpec.describe DecksHelper, type: :helper do
     it 'returns the number of creature cards' do
       expect(creature_count).to eq(1)
     end
+
+    it 'calculates both legendary and non-legendary creatures' do
+      card2 = Card.create(name: 'Massacre Girl', card_type: 'legendary creature')
+      card3 = Card.create(name: 'mountain', card_type: 'land', purpose: 'mana')
+      card4 = Card.create(name: 'endless cockroaches', card_type: 'creature', purpose: 'creature', colorless: 1, black: 1, cmc: 2)
+      @deck.cards << card2
+      @deck.cards << card3
+      @deck.cards << card4
+      expect(creature_count).to eq(3)
+    end
   end
 
   describe '#spot_removal' do
     it 'returns the number of spot removal cards' do
-      card.purpose = "removal"
+      card.purpose = 'removal'
       card.save
       expect(spot_removal).to eq(1)
     end
@@ -45,7 +55,7 @@ RSpec.describe DecksHelper, type: :helper do
 
   describe '#board_wipes' do
     it 'returns the number of board wipe cards' do
-      card.purpose = "board wipe"
+      card.purpose = 'board wipe'
       card.save
       expect(board_wipes).to eq(1)
     end
@@ -53,7 +63,7 @@ RSpec.describe DecksHelper, type: :helper do
 
   describe '#mana_ramp' do
     it 'returns the number of mana ramp cards' do
-      card.purpose = "mana ramp"
+      card.purpose = 'mana ramp'
       card.save
       expect(mana_ramp).to eq(1)
     end
@@ -61,7 +71,7 @@ RSpec.describe DecksHelper, type: :helper do
 
   describe '#card_draw' do
     it 'returns the number of card draw cards' do
-      card.purpose = "card draw"
+      card.purpose = 'card draw'
       card.save
       expect(card_draw).to eq(1)
     end
