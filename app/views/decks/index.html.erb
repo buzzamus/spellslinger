@@ -1,6 +1,6 @@
 <h1>All Decks</h1>
 
 <% @decks.each do |deck| %>
-  <h3><%= deck.name %></h3>
+  <h3><%= link_to deck.name, deck_path(deck.id) %></h3>
   <p><%= deck.format %></p>
 <% end %>

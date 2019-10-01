@@ -3,7 +3,7 @@ module DecksHelper
     average_cmc = 0
     nonland_cards = @deck.cards.reject { |card| card.purpose == 'mana' }
     nonland_cards.map { |card| average_cmc += card.cmc }
-    average_cmc = (average_cmc.to_f / nonland_cards.length.to_f)
+    average_cmc = (average_cmc.to_f / nonland_cards.length.to_f).round(2)
   end
 
   def deck_length
