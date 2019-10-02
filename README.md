@@ -1,24 +1,17 @@
-# README
+# Spellslinger
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+An ugly Rails app with no styling that allows you to create a deck, upload a csv with cards associated to that deck, and then view stats on said deck.
 
-Things you may want to cover:
+I have added no styling to this whatsoever, because CSS is hard and not my thing.
 
-* Ruby version
+* Ruby version 2.5.1
 
-* System dependencies
+## How to run this program
 
-* Configuration
+1) clone this repo
+2) navigate to the project's root directory and run `bundle install`
+3) start the server and boom!
 
-* Database creation
+## Run the tests
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+run `bundle exec rspec`
